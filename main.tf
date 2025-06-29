@@ -1,12 +1,8 @@
-locals {
-  hcloud_token = var.hcloud_token != "" ? var.hcloud_token : var.hcloud_token_local
-}
-
 module "kube-hetzner" {
   providers = {
     hcloud = hcloud
   }
-  hcloud_token = local.hcloud_token
+  hcloud_token = var.hcloud_token
 
   source = "kube-hetzner/kube-hetzner/hcloud"
 
@@ -26,18 +22,4 @@ module "kube-hetzner" {
   automatically_upgrade_os   = var.automatically_upgrade_os
   enable_klipper_metal_lb = var.enable_klipper_metal_lb
   allow_scheduling_on_control_plane = var.allow_scheduling_on_control_plane
-}
-
-provider "hcloud" {
-  token = local.hcloud_token
-}
-
-terraform {
-  required_version = ">= 1.5.0"
-  required_providers {
-    hcloud = {
-      source  = "hetznercloud/hcloud"
-      version = ">= 1.43.0"
-    }
-  }
 }

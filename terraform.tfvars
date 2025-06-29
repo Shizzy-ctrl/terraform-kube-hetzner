@@ -1,4 +1,4 @@
-hcloud_token_local = "<Hetzner token here>"
+hcloud_token = "<token here (no vault yet sadly)>"
 
 cluster_name = "cluster"
 ssh_public_key_path  = "~/.ssh/id_ed25519.pub"
